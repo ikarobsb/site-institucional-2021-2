@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 /*Varáveis*/
 :root {
     --cor-prim: #F9D84D;
@@ -6,16 +7,18 @@
     --cor-secun-clara: #FD9CA3;
     --cor-fundo: #333333;
     --cor-fundo-clara: #555555;
-    --cor-texto: #CCCCCC;
+    --cor-texto: #EEEEEE;
+    --fonte-texto: font-family: 'IBM Plex Sans', sans-serif;
+    --fonte-titulo: font-family: 'Playfair Display', serif;
 }
 /************* CSS reset ********************************/
 * { /*O "*" significa tudo*/
-    font-family: Calibri, Arial, sans-serif;
+    font-family: var(--fonte-texto);
     padding: 0;
     margin: 0;
     box-sizing: border-box;  /*borda faz parte das dimensões do elemento*/
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto)
+    /*background-color: var(--cor-fundo);
+    color: var(--cor-texto)*/
 }
 /********************************************************/
 
@@ -32,15 +35,40 @@ header {
     background-color: transparent;
 }
 
-nav {
+#menu-principal {
     display: flex;
     justify-content: center; /*Centralização horizontal*/
     align-items: center; /*Centralização vertical*/
     background-color: var(--cor-secun);
     min-height: 25px; /* altura mínima */
     width: 100%;
-    margin: 5px;
     }
+
+#menu-principal ul {/*afesta a lista do menu principal*/
+    list-style: none; /*tira a decoração da lista*/
+    display: flex; /*Container flex - todos os itens filhos na horizontal*/
+}
+
+#menu-principal ul li {
+    height: 36px;
+    margin: 0 10px; /* 0 topo; 10 esquerda e direita*/
+    }
+
+#menu-principal ul li a {
+    font-family: var(--fonte-titulo);
+    display: flex;
+    height: 36px;
+    align-items: center;
+    padding: 0 10px;
+    color: var(--cor-texto);
+    text-decoration: none;
+    background-color: var(--cor-secun);
+    transition: 300ms;/*afeta a velocidade dos efeitos - deve ser colocada no estado de repouso*/
+}
+
+#menu-principal ul li a:hover {/*efeito quando o mouse passa em cima*/
+    filter: brightness(1.4);/*muda o brilho (valores menores que 1, escurece, maiores que 1 clareia*/
+}
 
 main {
     display: flex;
