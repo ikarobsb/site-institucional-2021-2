@@ -29,15 +29,51 @@ html {
 }
 header {
   display: flex;
-  justify-content: center;  /* centralizaÃ§Ã£o horizontal */
-  align-items: center;  /* centralizaÃ§Ã£o vertical */
+  justify-content: space-between;  /* ajuste horizontal */
+  align-items: center;  /* ajuste vertical */
   background-color: var(--cor-prim);
   min-height: 50px; /* altura mÃ­nima */
   flex-wrap: wrap;  /* forÃ§a a quebra de linhas entre elementos flex */
 }
 #img-logo {
   background-color: transparent;
+  margin: 20px;
 }
+
+/*nav #social*/
+
+#social ul {
+  list-style: none;
+  display: flex;
+  margin: 20px;
+}
+
+#social ul li a {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  color: var(--cor-fundo);
+  text-decoration: none;
+}
+
+#social ul li img {
+  width: 40px;
+  filter: brightness(0.225);
+}
+
+#social ul li a span {
+  margin-left: 6px;
+  visibility: hidden;
+  width: 0;
+  transition: visibility 500ms ease-out, width 0;
+}
+
+#social ul li a:hover span {
+  width: auto;
+  visibility: visible;
+}
+
 #menu-principal {
   display: flex;
   justify-content: center;  /* centralizaÃ§Ã£o horizontal */
@@ -124,7 +160,7 @@ section > h1 { /* O sinal de > indica que serÃ£o atingidos apenas
 }
 
 /* Regra para os tÃ­tulos h1 que estÃ£o dentro dos articles */
-article > h1 {
+section > article > h1 {
   text-align: right;
   width: 100%;
   color: var(--cor-texto);
@@ -185,12 +221,40 @@ article > h1 {
 
 aside {
   display: flex;
-  justify-content: center;  /* centralizaÃ§Ã£o horizontal */
-  align-items: center;  /* centralizaÃ§Ã£o vertical */
-  background-color: lightgrey;
+  justify-content: top;  /* ajuste horizontal */
+  align-items: center;  /* ajuste vertical */
+  background-color: var(--cor-fundo);
   width: 25%;
-  margin: 5px;
+  margin: 20px;
+  padding: 16px;
+  color: var(--cor-texto);
+  font-size: 1.2rem;
+  flex-direction: column;
+  border-radius: 14px;
 }
+
+/*links dentro do aside*/
+
+aside a {
+  color: var(--cor-prim-clara);
+  text-decoration: none;
+}
+
+aside a:hover {
+  color: var(--cor-prim);
+  text-decoration: underline;
+}
+
+aside article {
+  display: flex;
+  text-align: center;
+  margin: 50px 0 50px 0;
+  padding: 30px 20px;
+  border-bottom: 3px groove var(--cor-texto);
+  border-top: 3px groove var(--cor-texto);
+  border-radius: 8px;
+}
+
 article {
   display: flex;
   justify-content: center;  /* centralizaÃ§Ã£o horizontal */
@@ -202,17 +266,85 @@ article {
   width: 100%;
 }
 
-/* Regras para tela com largura de atÃ© 600px */
-@media screen and (max-width: 600px) {
+/****************Regras de Responsividade***********************/
+/*Padrão*/
+@media (max-width: 1200px) {
+  body{
+    border: 3px dashed magenta}
+    #social ul li a span {
+      display: none; /*some com o elemento*/
+    }
 
-  main {
-    /* muda a direção dos filhos para coluna (vertical) */
-    flex-direction: column;
+    main {
+      flex-direction: column;
+    }
+    /*section e aside passam a ter largura de 100%*/
+    section, aside {
+      width: calc(100% - 40px);/*Função que desconta as margens dos elementos e evita rolagem horizontal*/
+    }
+
+    aside {
+      flex-direction: row; /*deixa os articles lado a lado*/
+      align-items: stretch; /*Faz com que as alturas dos articles fiquem iguais*/
+      
+    }
+
+    aside article {
+      margin: 0 30px;
+    }
+}  
+/*Tablets*/
+
+@media (max-width: 992px) {
+  body{
+    border: 3px dashed aqua
+  }
+}
+
+
+/*Celulares Médios*/
+
+@media (max-width: 768px) {
+  body{
+    border: 3px dashed yellow
+  }
+  /*Recolher menu*/
+
+  aside {
+    flex-direction: column; /*deixa os articles lado a lado*/
+    align-items: flex-start; /*Faz com que as alturas dos articles fiquem iguais*/
+    
   }
 
-  /* section e aside ficam com 100% de largura */
-  section, aside {
-    width: 100%;
+  aside article {
+    margin: 30px 0;
+  }
+
+  footer {
+    flex-direction: column;/*empilhar os elementos*/
+  }
+
+  footer img, footer address {
+    margin-bottom: 20px;
   }
 
 }
+
+
+/*Celulares Pequenos*/
+
+@media (max-width: 576px) {
+  body{
+    border: 3px dashed limegreen
+  }
+  header {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
